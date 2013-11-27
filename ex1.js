@@ -9,9 +9,11 @@ var _ = require("underscore"),
 // Work on executing both fetchAvailSeatsFromDB and fetchMyCustRecord in parallel. Call the
 // sellSeat function when both calls have data and you've determined what seat to sell.
 // Don't use async.
+var cheapSeat, me;
+
 function bookFlightsForHolidays() {
     lib.fetchAvailSeatsFromDB(function(seats) {
-        var cheapSeat = _.reduce(seats, bookFlightsForHolidays_findCheapestSeat, undefined);
+        cheapSeat = _.reduce(seats, bookFlightsForHolidays_findCheapestSeat, undefined);
         lib.fetchMyCustRecord(bookFlightsForHolidays_sellSeat);
     });
 };
@@ -27,7 +29,8 @@ function bookFlightsForHolidays_email(success) {
         console.log("oops");
 }
 
-function bookFlightsForHolidays_sellSeat(me) {
+function bookFlightsForHolidays_sellSeat(meRec) {
+    me = meRec;
     lib.sellSeat(me.id, cheapSeat.seatId, bookFlightsForHolidays_email);
 }
 
