@@ -1,0 +1,24 @@
+{
+  "name": "async-demo",
+  "version": "0.0.1",
+  "description": "Tutorial down the path of dealing with async programming using JS libraries.",
+  "main": "lib.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dhable/async-lecture.git"
+  },
+  "author": "dhable@gmail.com",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/dhable/async-lecture/issues"
+  },
+  "homepage": "https://github.com/dhable/async-lecture",
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "async": "~0.2.9",
+    "q": "~0.9.7"
+  }
+}

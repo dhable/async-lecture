@@ -1,7 +1,8 @@
 exports.fetchAvailSeatsFromDB = function(callback) {
     console.log("making call to pricing db");
     setTimeout(function() {
-        callback([{seatId: "2A", price: 1000000.99}, 
+        callback(null,
+                 [{seatId: "2A", price: 1000000.99}, 
                   {seatId: "12D", price: 876.12},
                   {seatId: "44C", price: 199.99},
                   {seatId: "44D", price: 199.92}]);
@@ -12,7 +13,7 @@ exports.fetchAvailSeatsFromDB = function(callback) {
 exports.fetchMyCustRecord = function(callback) {
     console.log("making call to customer db");
     setTimeout(function() {
-        callback({id: 123, name: "Dan"});
+        callback(null, {id: 123, name: "Dan"});
     }, 1000);
 };
 
@@ -21,7 +22,7 @@ exports.sellSeat = function(custId, seatId, callback) {
     console.log("attempting to update db in transaction");
     setTimeout(function() {
         console.log("assigning seat %s to customer %s", seatId, custId);
-        callback(true);
+        callback(null, true);
     }, 5000 + custId);
 };
 
