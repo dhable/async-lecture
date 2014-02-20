@@ -12,14 +12,10 @@ var _ = require("underscore"),
  * Since my implementation started small, I just decided to nest the callback
  * function declerations inline with the API methods. Before I knew it, I was in
  * callback hell!
- *
- * Note: You normally won't name the callback functions if you're defining them
- *       inline. I have provided names so we can trace where those blocks of code
- *       end up as we work through our iterations.
  */
 function bookFlightsForHolidays() {
     lib.fetchAvailSeatsFromDB(function(err, seats) {
-        var cheapSeat = _.reduce(seats, function min_price(currentCheapest, seat) {
+        var cheapSeat = _.reduce(seats, function(currentCheapest, seat) {
             if(!currentCheapest) return seat;
             
             if (seat.price < currentCheapest.price) 
@@ -28,10 +24,10 @@ function bookFlightsForHolidays() {
                 return currentCheapest;
         }, undefined);
 
-        lib.fetchMyCustRecord(function sellSeat(err, me) {
-            lib.sellSeat(me.id, cheapSeat.seatId, function emailConfirmation(err, success) {
+        lib.fetchMyCustRecord(function(err, me) {
+            lib.sellSeat(me.id, cheapSeat.seatId, function(err, success) {
                 if(success)
-                    lib.sendConfirmationEmail(me.id, function done(err) {
+                    lib.sendConfirmationEmail(me.id, function(err) {
                         console.log("all done");
                     });
                 else
